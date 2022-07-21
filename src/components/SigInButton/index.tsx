@@ -6,7 +6,7 @@ import styles from './styles.module.scss'
 
 export default function SigInButton(){
     
-    const isUserLogged = true
+    const isUserLogged = false
 
     return isUserLogged ? (
         <button type="button" className={styles.sigInButton}>
