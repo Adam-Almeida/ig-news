@@ -1,16 +1,39 @@
-import styles from './styles.module.scss'
+import { useSession, signIn } from "next-auth/react";
+import { api } from "../../services/api";
+import { getStripeJs } from "../../services/stripe-js";
+
+import styles from "./styles.module.scss";
 
 interface SubscribeButtonProps {
-    priceId: string
+  priceId: string;
 }
 
-export default function SubscribeButton({ priceId }:SubscribeButtonProps) {
-    return(
-        <button
-            type='button'
-            className={styles.SubscribeButton}
-        >
-            Inscrever-se
-        </button>
-    )
+export default function SubscribeButton({ priceId }: SubscribeButtonProps) {
+  const { data: session } = useSession();
+
+  async function handleSubscribe() {
+    if (!session) {
+      signIn("github");
+      return;
+    }
+
+    try {
+      const response = await api.post("/subscribe");
+      const { sessionId } = response.data;
+      const stripe = await getStripeJs();
+      await stripe?.redirectToCheckout({ sessionId: sessionId });
+    } catch (err) {
+      alert(err);
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      className={styles.SubscribeButton}
+      onClick={handleSubscribe}
+    >
+      Inscrever-se
+    </button>
+  );
 }
