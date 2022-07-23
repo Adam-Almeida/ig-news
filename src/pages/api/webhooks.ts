@@ -5,10 +5,10 @@ import { stripe } from "../../services/stripe";
 import { saveSubscription } from "./_lib/manageSubscription";
 
 async function buffer(readable: Readable) {
-  const chunks = [];
+  const chunks: any = [];
 
   for await (const chunk of readable) {
-    chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
+    chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
   }
 
   return Buffer.concat(chunks);
@@ -21,10 +21,9 @@ export const config = {
 };
 
 const relevantEvents = new Set([
-    'checkout.session.completed',
-    'checkout.subscriptions.created',
-    'checkout.subscriptions.updated',
-    'checkout.subscriptions.deleted'
+  'checkout.session.completed',
+  'customer.subscription.updated',
+  'customer.subscription.deleted',
 ])
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -46,13 +45,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       }
     }
 
-    const type = event.type
+    const {type} = event
 
     if (relevantEvents.has(type)) {
       try{
         switch (type) {
-            case 'checkout.subscription.updated':
-            case 'checkout.subscription.deleted':
+            case 'customer.subscription.updated':
+            case 'customer.subscription.deleted':
 
             const subscription = event.data.object as Stripe.Subscription
 

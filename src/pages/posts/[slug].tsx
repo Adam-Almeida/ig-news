@@ -41,6 +41,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = params as IParams;
 
   const session = await getSession({ req });
+  
+  console.log(session)
 
   // if(!session){
 
