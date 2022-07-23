@@ -1,5 +1,6 @@
 import SigInButton from '../SigInButton'
 import styles from './styles.module.scss'
+import Link from 'next/link'
 
 export function Header() {
     return(
@@ -10,8 +11,12 @@ export function Header() {
                     <img src="/images/logo.svg" alt="Ibi News" />
                 </picture>
                 <nav>
-                    <a href="" className={styles.active}>Home</a>
-                    <a href="">Posts</a>
+                    <Link href="/">
+                        <a className={styles.active}>Home</a>
+                    </Link>
+                    <Link href="/posts">
+                        <a>Posts</a>
+                    </Link>
                 </nav>
                 <SigInButton /> 
             </div>
