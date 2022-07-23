@@ -5,12 +5,15 @@
 }
 
 .posts {
-    max-width: 720px;
+    max-width: calc(720px + 2rem);
     margin: 5rem auto 0;
+
 
     a {
         display: block;
-        
+        padding: 2rem;
+        transition: background-color 0.2s;
+        border-bottom: solid 1px transparent;
 
         &+a {
             margin-top: 2rem;
@@ -20,7 +23,7 @@
 
         time {
             font-size: 1rem;
-            display: flex;
+            display: block;
             align-items: center;
             color: var(--gray-300);
         }
@@ -41,6 +44,11 @@
 
         &:hover strong {
             color: var(--primary);
+        }
+        &:hover {
+            background-color: var(--gray-900);
+            border-radius: 0.35rem 0.35rem 0 0 ;
+            border-bottom: 1px solid var(--primary);
         }
 
     }
