@@ -22,7 +22,7 @@
         a {
             display: inline-block;
             position: relative;
-            padding:  0 0.6rem;
+            padding: 0 0.6rem;
             height: 5rem;
             line-height: 5rem;
 
@@ -30,7 +30,7 @@
             transition: color 0.2s;
 
 
-            & + a {
+            &+a {
                 margin-left: 2rem;
             }
 
@@ -56,7 +56,7 @@
         }
     }
 
-    button{
+    button {
         margin-left: auto;
     }
 }

@@ -1,4 +1,4 @@
-.contentContainer{
+.contentContainer {
     max-width: 1120px;
     margin: 0 auto;
     padding: 0 2rem;
@@ -12,8 +12,8 @@
 
 .hero {
     max-width: 600px;
-    
-    > span {
+
+    >span {
         font-size: 1.2rem;
         font-weight: bold;
     }
@@ -34,8 +34,8 @@
         font-size: 1.5rem;
         line-height: 2.25rem;
         margin-top: 1.5rem;
-        
-        span{
+
+        span {
             color: var(--secondary);
             font-weight: bold;
         }
